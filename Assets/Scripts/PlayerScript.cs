@@ -15,12 +15,12 @@ public class PlayerScript : MonoBehaviour
     
     public TMP_Text ScoreTxt;
 
-    
+    private Animator anim;
 
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         RB = GetComponent<Rigidbody2D>();
-
         score = 0;
     }
 
@@ -31,10 +31,17 @@ public class PlayerScript : MonoBehaviour
         {
             if (isGrounded == true)
             {
-                RB.AddForce(Vector2.up * JumpForce);
                 isGrounded = false;
+                RB.AddForce(Vector2.up * JumpForce);
             }
         }
+
+        if(isGrounded==false){
+            anim.SetBool("isJump", true);
+        }else{
+            anim.SetBool("isJump", false);
+        }
+
         if (isAlive)
         {
             score += Time.deltaTime * 4;
