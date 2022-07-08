@@ -63,8 +63,9 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("spike"))
         {
-            isAlive = false;
-            Time.timeScale = 0;
+            anim.SetBool("isDie", true);
+            // isAlive = false;
+            // Time.timeScale = 0;
         }
     }
 
